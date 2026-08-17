@@ -1,0 +1,22 @@
+# long_term evidence — Lab 17
+# Nguyen Le Minh (2A202601045)
+# $ docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded --only-layer long_term
+
+E09 long_term: Lan uu tien stack backend nao cho LOTUS-88?
+  PASS  1227.3 ms
+E02 long_term: Voi demo ca nhan cua Minh, ngon ngu uu tien la gi?
+  PASS  1117.6 ms
+E03 long_term: Minh con open loop hay deadline nao chua hoan thanh?
+  PASS  1082.6 ms
+E08 long_term: Backend cua BLUEBIRD-42 bat buoc dung stack gi?
+  PASS  1263.3 ms
+           Benchmark summary            
+┏━━━━━━┳━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ┃ Layer     ┃ Pass ┃ Latency ms ┃
+┡━━━━━━╇━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━━━━┩
+│ E09  │ long_term │ yes  │     1227.3 │
+│ E02  │ long_term │ yes  │     1117.6 │
+│ E03  │ long_term │ yes  │     1082.6 │
+│ E08  │ long_term │ yes  │     1263.3 │
+└──────┴───────────┴──────┴────────────┘
+Reports: /workspace/reports/benchmark.json | /workspace/reports/benchmark.md

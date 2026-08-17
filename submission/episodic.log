@@ -1,0 +1,17 @@
+# episodic evidence — Lab 17
+# Nguyen Le Minh (2A202601045)
+# $ docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded --only-layer episodic
+
+E04 episodic: Lan truoc Minh fix async HTTP timeout bang cach nao?
+  PASS  303.7 ms
+E05 episodic: Reflection cua su co async la gi, tang timeout co phai root fix 
+khong?
+  PASS  211.0 ms
+           Benchmark summary           
+┏━━━━━━┳━━━━━━━━━━┳━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ┃ Layer    ┃ Pass ┃ Latency ms ┃
+┡━━━━━━╇━━━━━━━━━━╇━━━━━━╇━━━━━━━━━━━━┩
+│ E04  │ episodic │ yes  │      303.7 │
+│ E05  │ episodic │ yes  │      211.0 │
+└──────┴──────────┴──────┴────────────┘
+Reports: /workspace/reports/benchmark.json | /workspace/reports/benchmark.md

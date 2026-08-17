@@ -1,0 +1,16 @@
+# semantic evidence — Lab 17
+# Nguyen Le Minh (2A202601045)
+# $ docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded --only-layer semantic
+
+E06 semantic: Quy tac retry POST payment la gi?
+  PASS  286.0 ms
+E11 semantic: Theo incident playbook, truoc khi tang timeout can kiem tra gi?
+  PASS  215.4 ms
+           Benchmark summary           
+┏━━━━━━┳━━━━━━━━━━┳━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ┃ Layer    ┃ Pass ┃ Latency ms ┃
+┡━━━━━━╇━━━━━━━━━━╇━━━━━━╇━━━━━━━━━━━━┩
+│ E06  │ semantic │ yes  │      286.0 │
+│ E11  │ semantic │ yes  │      215.4 │
+└──────┴──────────┴──────┴────────────┘
+Reports: /workspace/reports/benchmark.json | /workspace/reports/benchmark.md
