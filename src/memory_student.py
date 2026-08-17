@@ -84,6 +84,7 @@ class StudentMemory:
         return render_graph_search(results)
 
     def assemble_context(self, layers: dict[str, str]) -> tuple[str, dict[str, dict[str, int]]]:
-        # LAB TODO 4/4
-        # Use ContextBudgetManager to enforce 10/4/3/3 budget and priority order.
-        raise NotImplementedError("LAB TODO: assemble/trim memory context")
+        # ContextBudgetManager already encodes the lab's 10/4/3/3 split and the
+        # short_term -> long_term -> episodic -> semantic priority order, and
+        # returns (merged_text, per-layer breakdown).
+        return self.budget.assemble(layers)
