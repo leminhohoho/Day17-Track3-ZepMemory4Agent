@@ -244,11 +244,18 @@ def main() -> None:
             follow = retrieve_for_case(memory, {**case, "query": prompt}, st.session_state.chat)
             st.session_state.last_result = follow
             context = follow.get("merged_context", "")
-            if gemini_available():
-                reply = generate_reply(context, st.session_state.chat[:-1], prompt)
-            else:
+            fallback = (context[:1500] or "(no memory retrieved)")
+            if not gemini_available():
                 reply = ("_(Gemini key missing — showing retrieved context instead)_\n\n"
-                         + (context[:1500] or "(no memory retrieved)"))
+                         + fallback)
+            else:
+                # Retrieval is the graded path; a chat-model outage must not
+                # take the demo down with it.
+                try:
+                    reply = generate_reply(context, st.session_state.chat[:-1], prompt)
+                except Exception as llm_exc:  # noqa: BLE001
+                    reply = (f"_(Chat model unavailable — {type(llm_exc).__name__}. "
+                             "Showing retrieved memory context instead.)_\n\n" + fallback)
             st.session_state.chat.append({"role": "assistant", "content": reply})
             with st.chat_message("assistant"):
                 st.write(reply)
