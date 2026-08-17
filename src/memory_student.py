@@ -44,13 +44,19 @@ class StudentMemory:
         return join_nonempty([context_block, fact_text], sep="\n\n")
 
     def retrieve_episodic(self, user_id: str, query: str) -> str:
-        # LAB TODO 2/4
-        # Use client.graph.search(user_id=..., query=cap_query(query),
-        #     scope="episodes", limit=...) then render_graph_search(...).
-        # Tip: verbose session episodes can crowd out concise, marker-bearing
-        # reflections under the tight episodic budget — render_graph_search
-        # accepts an `episode_char_cap` to keep more distinct episodes.
-        raise NotImplementedError("LAB TODO: implement episodic search")
+        # user_id (not graph_id): episodes are the user's own trajectory.
+        # scope="episodes" returns the raw source messages, which is what keeps
+        # incident markers like ASYNC-FIX-20 intact.
+        results = self.client.graph.search(
+            user_id=user_id,
+            query=cap_query(query),
+            scope="episodes",
+            limit=15,
+        )
+        # Cap each episode: a few long session messages would otherwise eat the
+        # 3% episodic budget and push out the short reflection that carries the
+        # "connection churn, not timeout threshold" conclusion.
+        return render_graph_search(results, episode_char_cap=180)
 
     def retrieve_semantic(self, graph_id: str, query: str) -> str:
         # LAB TODO 3/4
