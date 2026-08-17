@@ -4,6 +4,7 @@
 
 Practice set: **11/11 PASS (100% hit rate)**, avg latency 672 ms.
 No-memory baseline: **2/11 (18.2%)**. See `reports/comparison.md`.
+Golden set: **20/20**.
 
 ## Three required questions
 

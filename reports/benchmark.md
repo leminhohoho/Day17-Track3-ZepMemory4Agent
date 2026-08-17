@@ -5,22 +5,22 @@
 - Cases: **11**
 - Passed: **11/11**
 - Evidence hit rate: **100.0%**
-- Average retrieval latency: **672.4 ms**
+- Average retrieval latency: **682.4 ms**
 - Average token reduction vs full source context: **14.2%**
 
 | Case | Layer | Pass | Latency ms | Retrieved tokens | Token reduction | Missing / Error |
 | --- | --- | --- | ---: | ---: | ---: | --- |
-| E01 | short_term | PASS | 0.0 | 133 | 0.0% |  |
-| E06 | semantic | PASS | 331.1 | 148 | 67.8% |  |
-| E09 | long_term | PASS | 1373.0 | 718 | 0.0% |  |
-| E10 | short_term | PASS | 0.5 | 195 | 0.0% |  |
-| E02 | long_term | PASS | 1134.2 | 1400 | 0.0% |  |
-| E03 | long_term | PASS | 1212.5 | 1380 | 0.0% |  |
-| E04 | episodic | PASS | 223.7 | 269 | 0.0% |  |
-| E05 | episodic | PASS | 226.1 | 303 | 0.0% |  |
-| E07 | mixed | PASS | 1488.2 | 485 | 14.2% |  |
-| E11 | semantic | PASS | 223.8 | 146 | 74.2% |  |
-| E08 | long_term | PASS | 1183.3 | 1375 | 0.0% |  |
+| E01 | short_term | PASS | 0.1 | 133 | 0.0% |  |
+| E06 | semantic | PASS | 587.1 | 148 | 67.8% |  |
+| E09 | long_term | PASS | 1157.9 | 825 | 0.0% |  |
+| E10 | short_term | PASS | 0.3 | 195 | 0.0% |  |
+| E02 | long_term | PASS | 1312.1 | 1398 | 0.0% |  |
+| E03 | long_term | PASS | 1159.9 | 1376 | 0.0% |  |
+| E04 | episodic | PASS | 244.5 | 262 | 0.0% |  |
+| E05 | episodic | PASS | 244.7 | 281 | 0.0% |  |
+| E07 | mixed | PASS | 1381.0 | 485 | 14.2% |  |
+| E11 | semantic | PASS | 218.6 | 146 | 74.2% |  |
+| E08 | long_term | PASS | 1200.7 | 1375 | 0.0% |  |
 
 ## Evidence excerpts
 
