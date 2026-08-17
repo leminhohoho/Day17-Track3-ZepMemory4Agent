@@ -59,13 +59,29 @@ class StudentMemory:
         return render_graph_search(results, episode_char_cap=180)
 
     def retrieve_semantic(self, graph_id: str, query: str) -> str:
-        # LAB TODO 3/4
-        # Search the standalone graph (graph_id, NOT user_id).
-        # Recommended: scope="episodes" — it returns raw document text that keeps
-        # literal markers (e.g. PAYMENT-RULE-3). The "auto" scope returns
-        # extracted facts that DROP those literal codes, so avoid it here.
-        # Fallback: scope="nodes".
-        raise NotImplementedError("LAB TODO: implement semantic graph search")
+        # graph_id, NOT user_id: this is the shared domain KB, not anyone's
+        # personal memory. Searching by user_id here would return preferences
+        # instead of the playbook and fail E06/E11.
+        capped = cap_query(query)
+        try:
+            results = self.client.graph.search(
+                graph_id=graph_id,
+                query=capped,
+                scope="episodes",
+                limit=8,
+            )
+        except Exception:
+            # Not all accounts/SDK versions expose episode scope on a
+            # standalone graph; nodes still carry the entity summaries.
+            results = self.client.graph.search(
+                graph_id=graph_id,
+                query=capped,
+                scope="nodes",
+                limit=8,
+            )
+        # No episode_char_cap here: these documents put their marker
+        # (PAYMENT-RULE-3, CONN-POOL-FIRST) at the END, so truncating loses it.
+        return render_graph_search(results)
 
     def assemble_context(self, layers: dict[str, str]) -> tuple[str, dict[str, dict[str, int]]]:
         # LAB TODO 4/4
