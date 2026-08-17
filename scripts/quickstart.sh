@@ -12,4 +12,6 @@ docker compose up -d redis qdrant
 docker compose run --rm app python -m src.smoke
 docker compose run --rm app python -m src.seed
 
-echo "Ready. Run: docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded"
+echo "Ready. After editing src/memory_student.py, rebuild first:"
+echo "  docker compose build app"
+echo "  docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded"

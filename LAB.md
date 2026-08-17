@@ -240,9 +240,10 @@ user.add
   -> poll den khi graph co du lieu
 ```
 
-Chay rieng nhom long-term:
+Chay rieng nhom long-term (rebuild truoc, vi `app` khong bind-mount source khi dung remote `DOCKER_HOST`):
 
 ```bash
+docker compose build app
 docker compose run --rm app python -m src.evaluate \
   --impl student --reuse-seeded --only-layer long_term
 ```
@@ -283,9 +284,10 @@ results = client.graph.search(
 
 Render `episode.content` + metadata/provenance neu co.
 
-Chay:
+Chay (nho `docker compose build app` truoc, cung ly do o Pha B):
 
 ```bash
+docker compose build app
 docker compose run --rm app python -m src.evaluate \
   --impl student --reuse-seeded --only-layer episodic
 ```
@@ -324,9 +326,10 @@ results = client.graph.search(
 
 Dung `scope="episodes"` de giu marker literal (`PAYMENT-RULE-3`, `CONN-POOL-FIRST`). `scope="auto"` thuong chi tra entity/fact, mat marker. Fallback: `scope="nodes"`.
 
-Chay:
+Chay (rebuild truoc):
 
 ```bash
+docker compose build app
 docker compose run --rm app python -m src.evaluate \
   --impl student --reuse-seeded --only-layer semantic
 ```
@@ -363,10 +366,11 @@ Priority:
 4. semantic knowledge
 ```
 
-Chay full benchmark va baseline khong co durable memory:
+Chay full benchmark va baseline khong co durable memory (rebuild truoc lenh student):
 
 ```bash
 docker compose run --rm app python -m src.evaluate --impl no_memory
+docker compose build app
 docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded
 docker compose run --rm app python -m src.compare_reports
 ```
@@ -634,6 +638,7 @@ Hai huong (UI va report dep) **khong cong chong**. Lay max.
 ### 5.5. Cong thuc diem
 
 ```bash
+docker compose build app
 docker compose run --rm app pytest -q
 docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded
 # Golden: copy file giang vien phat vao data/golden_eval.json, roi:
@@ -700,6 +705,7 @@ Nop **mot** GitHub repo (public hoac invite giang vien). Commit cuoi cung truoc 
 Lenh nop de tu kiem:
 
 ```bash
+docker compose build app
 docker compose run --rm app pytest -q
 docker compose run --rm app python -m src.evaluate --impl no_memory
 docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded

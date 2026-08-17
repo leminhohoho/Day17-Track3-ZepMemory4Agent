@@ -48,10 +48,16 @@ docker compose run --rm app python -m src.smoke
 docker compose run --rm app python -m src.seed
 docker compose run --rm app python -m src.demo_short_term
 docker compose run --rm app python -m src.evaluate --impl no_memory
+
+# app khong con bind-mount source (can cho remote DOCKER_HOST). Sau moi lan
+# sua src/memory_student.py phai `docker compose build app` truoc khi run,
+# neu khong container van dung code image cu.
+docker compose build app
 docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded
 docker compose run --rm app python -m src.compare_reports
 # CHI sau khi da commit reports/ practice. Chup privacy, roi seed lai neu can golden.
 # Phut 110: copy data/golden_eval.json (giang vien phat), roi:
+docker compose build app
 docker compose run --rm app python -m src.evaluate --impl student --reuse-seeded --golden
 # Bonus UI:
 # GEMINI_API_KEY trong .env de chat; retrieval van chay khong can Gemini
